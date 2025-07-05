@@ -9,3 +9,12 @@
     scrollbar-width: none;     /* Firefox */
   }
   
+@keyframes slideUp {
+  0% { transform: translateY(100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+.slide-up {
+  display: inline-block;
+  animation: slideUp 0.7s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+  

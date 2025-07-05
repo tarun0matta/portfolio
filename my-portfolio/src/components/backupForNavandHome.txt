@@ -1,5 +1,7 @@
+home.jsx
+
 import ProjectCard from '../components/ProjectCard';
-import { useState, useEffect } from 'react';
+
 const projects = [
   {
     title: "Infinity POS",
@@ -39,44 +41,26 @@ const projects = [
   }
 ];
 
-const rotatingWords = ['language models', 'LLMs', 'Transformers'];
 const Home = () => {
-    const [wordIndex, setWordIndex] = useState(0);
-  
-    useEffect(() => {
-      const interval = setInterval(() => {
-        setWordIndex((prev) => (prev + 1) % rotatingWords.length);
-      }, 2000); // Change every 2s
-  
-      return () => clearInterval(interval);
-    }, []);
   return (
-    <div className="bg-black text-white min-h-screen px-6 py-16">
-      {/* Top section: Intro */}
-      <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-start ">
-        <div>
-          <p className="text-gray-400 mb-10 text-2xl">Hi, I'm Tarun</p>
-          <h1 className="text-4xl md:text-5xl font-semibold leading-tight mb-6">
-          I'm passionate about <br /> 
-          building usable AI with<br/>
-          <span
-            className={`text-green-400 transition duration-500 ease-in-out slide-up`}
-            key={wordIndex}
-          >
-            {rotatingWords[wordIndex]}
-          </span>
-          </h1>
-          <p className="text-gray-400 max-w-xl text-sm md:text-base">
-            As a software engineer with a passion for machine learning and GenAI, I specialize in building modern web apps powered by LLMs. My projects span domains like voice interfaces, natural language systems, and developer tools.
-          </p>
-        </div>
+    <div className="text-beige">
+      <section className="text-center mt-20">
+        <h1 className="text-5xl font-bold mb-2">Tarun Matta</h1>
+        <p className="text-lg text-gray-400 mb-6">Satya Sai Tarun Matta</p>
+        <p className="max-w-xl mx-auto text-sm text-gray-400 mb-12">
+          I'm a graduate student passionate about software engineering, machine learning, and full-stack web development. I love building real-world projects and experimenting with AI.
+        </p>
+        
+      </section>
+      <section className="text-center mt-20">
+      <h2 className="text-3xl font-bold mb-6">About Me</h2>
+        <p className="max-w-xl mx-auto text-sm text-gray-400 mb-12">
+          I'm a graduate student passionate about software engineering, machine learning, and full-stack web development. I love building real-world projects and experimenting with AI.
+        </p>
+        
+      </section>
 
-        <div className="mt-6 md:mt-0">
-          <p className="text-gray-400 text-lg">● I'm available for new projects</p>
-        </div>
-      </div>
 
-      {/* Optional: Projects or About section */}
       <section id="projects" className="max-w-7xl mx-auto px-4 py-16">
         <h2 className="text-3xl font-bold mb-6">Projects</h2>
 
@@ -87,19 +71,41 @@ const Home = () => {
             </div>
           ))}
 
-          <div className="snap-center shrink-0 w-[300px] h-[270px] bg-black border border-white rounded-lg flex items-center justify-center">
+          {/* "See All Projects" card */}
+          <div className="snap-center shrink-0 w-[300px] h-[270px] bg-black border border-beige rounded-lg flex items-center justify-center">
             <a
               href="/projects"
-              className="text-white font-semibold underline hover:opacity-80 transition"
+              className="text-beige font-semibold underline hover:opacity-80 transition"
             >
               See All Projects →
             </a>
           </div>
         </div>
       </section>
+
     </div>
   );
 };
 
-
 export default Home;
+
+
+navbar.jsx
+
+import { Link } from 'react-router-dom';
+
+const Navbar = () => {
+  return (
+    <nav className="bg-black text-white px-6 py-4 shadow-md flex justify-between items-center sticky top-0 z-50">
+      <Link to="/" className="text-3xl font-bold tracking-wide hover:opacity-80 transition">Tarun Matta</Link>
+      <div className="space-x-4 text-sm">
+        <Link to="/about" className="hover:opacity-80 transition">About</Link>
+        <Link to="/projects" className="hover:opacity-80 transition">Projects</Link>
+        <Link to="/resume" className="hover:opacity-80 transition">Resume</Link>
+        <Link to="/contact" className="hover:opacity-80 transition">Contact</Link>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
