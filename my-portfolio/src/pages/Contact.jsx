@@ -15,12 +15,7 @@ const socialLinks = [
     icon: <FaGithub />,
     color: 'hover:text-white'
   },
-  {
-    name: 'Medium',
-    url: 'https://medium.com/@yourusername',
-    icon: <FaMedium />,
-    color: 'hover:text-white'
-  },
+
   {
     name: 'Twitter',
     url: 'https://twitter.com/yourusername',

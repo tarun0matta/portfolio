@@ -1,4 +1,3 @@
-import ProjectCard from '../components/ProjectCard';
 import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
 
@@ -251,7 +250,7 @@ const Home = () => {
       <div className="max-w-[1400px] mx-auto px-8 py-20">
         {/* Header row */}
         <motion.div 
-          className="flex justify-between items-center mb-40"
+          className="flex justify-between items-center mb-10"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
