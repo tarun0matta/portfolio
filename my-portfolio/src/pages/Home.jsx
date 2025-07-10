@@ -1,56 +1,85 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const projects = [
   {
-    title: "Infinity POS",
-    description: "A smart point-of-sale system with inventory tracking, reporting, and role-based access.",
-    tech: ["React", "Flask", "PostgreSQL", "JWT"],
-    link: "https://your-demo-link.com",
+    title: "Cooking Chatbot (Fine-tuned LLaMA2)",
+    description: "A fine-tuned LLaMA2 model trained on RecipeNLG to act as a personal cooking assistant.",
+    tech: ["Python", "HuggingFace", "LoRA", "LLaMA2"],
+    link: "https://github.com/tarun0matta/cookbot-llama2",  // change if hosted somewhere else
     align: "right"
   },
   {
-    title: "Wumpus World AI",
-    description: "Genetic algorithm-driven AI agent to navigate a Wumpus World environment.",
-    tech: ["Python", "Genetic Algorithm", "Game AI"],
-    link: "https://github.com/yourusername/wumpus-world-ai",
+    title: "Text to SQL",
+    description: "Converts natural language questions into SQL queries using prompt engineering and schema awareness.",
+    tech: ["Python", "Streamlit", "LLMs"],
+    link: "https://github.com/tarun0matta/text-2-sql",
     align: "left"
   },
   {
-    title: "PDF Q&A (RAG)",
-    description: "Retrieval-Augmented Generation app that answers questions from uploaded PDFs using LLMs.",
-    tech: ["LangChain", "Python", "OpenAI API"],
-    link: "https://github.com/yourusername/pdf-qa",
+    title: "Drive-Thru Voice Assistant",
+    description: "A local chatbot powered by LLaMA 3 and gTTS that takes fast food orders through speech.",
+    tech: ["Python", "Ollama", "gTTS", "SpeechRecognition"],
+    link: "https://github.com/tarun0matta/drivethru-chatbot",
     align: "right"
+  },
+  {
+    title: "PDF Q&A (RAG)",
+    description: "Retrieval-Augmented Generation app that lets users ask questions based on uploaded PDFs.",
+    tech: ["LangChain", "Python", "LLMs"],
+    link: "https://github.com/tarun0matta/rag-implementation",
+    align: "left"
+  },
+  {
+    title: "Portfolio Website",
+    description: "My personal website built with React to showcase projects, skills, and sarcasm—professionally.",
+    tech: ["React", "TailwindCSS", "Framer Motion"],
+    link: "https://github.com/tarun0matta/portfolio",
+    align: "right"
+  },
+  {
+    title: "Infinity POS",
+    description: "A smart POS system with inventory, sales, employee roles, and analytics built from scratch.",
+    tech: ["React", "Flask", "PostgreSQL", "JWT"],
+    link: "https://github.com/tarun0matta/infinity-pos",  // change if hosted live
+    align: "left"
   }
 ];
 
+
 const skills = [
   {
-    category: "AI & Machine Learning",
+    category: "GenAI & LLMs",
     items: [
-      { name: "Large Language Models", level: 95 },
-      { name: "Neural Networks", level: 88 },
-      { name: "Natural Language Processing", level: 92 },
-      { name: "Computer Vision", level: 85 }
+      { name: "LLaMA3 & Ollama", level: 95 },
+      { name: "Transformer Architectures", level: 90 },
+      { name: "Prompt Engineering", level: 92 },
+      { name: "RAG Systems", level: 94 },
+      { name: "Diffusion & GANs", level: 88 },
+      { name: "LangChain", level: 92 }
     ]
   },
   {
-    category: "Full Stack Development",
+    category: "ML Frameworks & Programming",
     items: [
-      { name: "React/Next.js", level: 90 },
-      { name: "Node.js/Express", level: 85 },
-      { name: "Python/Flask", level: 92 },
-      { name: "Database Design", level: 88 }
+      { name: "Python", level: 95 },
+      { name: "TensorFlow", level: 90 },
+      { name: "PyTorch", level: 88 },
+      { name: "Hugging Face", level: 92 },
+      { name: "scikit-learn", level: 90 },
+      { name: "SQL", level: 88 }
     ]
   },
   {
-    category: "DevOps & Cloud",
+    category: "Cloud & Infrastructure",
     items: [
-      { name: "AWS Services", level: 82 },
-      { name: "Docker/Kubernetes", level: 85 },
-      { name: "CI/CD Pipelines", level: 88 },
-      { name: "System Design", level: 86 }
+      { name: "AWS Services", level: 88 },
+      { name: "Docker & Kubernetes", level: 85 },
+      { name: "Git & Version Control", level: 92 },
+      { name: "FastAPI & APIs", level: 90 },
+      { name: "PostgreSQL & Databases", level: 88 },
+      { name: "Pandas & NumPy", level: 92 }
     ]
   }
 ];
@@ -59,28 +88,18 @@ const rotatingWords = ['language models', 'LLMs', 'Transformers'];
 
 const experiences = [
   {
-    year: "2024",
-    title: "AI Research Assistant",
-    company: "UC Berkeley",
-    description: "Leading research in LLM applications and RAG systems",
-    tech: ["PyTorch", "LangChain", "Transformers"],
-    highlight: "Published paper on efficient RAG architectures"
-  },
-  {
-    year: "2023",
-    title: "Machine Learning Engineer",
-    company: "Tech Startup",
-    description: "Developed AI-powered analytics platform",
-    tech: ["TensorFlow", "React", "AWS"],
-    highlight: "Reduced inference time by 60%"
-  },
-  {
-    year: "2022",
-    title: "Full Stack Developer",
-    company: "Fortune 500",
-    description: "Built enterprise-scale web applications",
-    tech: ["Next.js", "Node.js", "PostgreSQL"],
-    highlight: "Led team of 5 developers"
+    year: "2022-2023",
+    title: "Developer Intern",
+    company: "G G Engineering Works",
+    location: "Hyd, India",
+    description: "Developed and maintained RESTful APIs using Flask for internal tools and customer applications",
+    tech: ["Flask", "PostgreSQL", "REST APIs", "JSON"],
+    highlight: "Aug. 2022 - Mar. 2023",
+    details: [
+      "Developed and maintained RESTful APIs using Fast API, improving backend functionality for internal tools and customer-facing applications",
+      "Collaborated with senior developers to design endpoints, handle data validation, and implement error handling for robust API workflows",
+      "Worked with PostgreSQL and integrated APIs with frontend components using JSON-based communication"
+    ]
   }
 ];
 
@@ -186,16 +205,27 @@ const ExperienceCard = ({ experience, index }) => {
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: index * 0.2 + 0.3 }}
         >
-          {experience.year}
+          {experience.highlight}
         </motion.span>
 
         <motion.div
           className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 group hover:border-white/30 transition-all duration-300"
           whileHover={{ scale: 1.02, backgroundColor: "rgba(255,255,255,0.08)" }}
         >
-          <h3 className="text-2xl font-light text-white/90 mb-2">{experience.title}</h3>
-          <h4 className="text-lg text-white/70 mb-4">{experience.company}</h4>
-          <p className="text-white/60 mb-4">{experience.description}</p>
+          <div className="flex justify-between items-start mb-4">
+            <div>
+              <h3 className="text-2xl font-light text-white/90 mb-2">{experience.title}</h3>
+              <h4 className="text-lg text-white/70 mb-1">{experience.company}</h4>
+            </div>
+            <span className="text-sm text-white/50">{experience.location}</span>
+          </div>
+          
+          <div className="space-y-2 mb-4">
+            {experience.details.map((detail, i) => (
+              <p key={i} className="text-white/60 text-sm">{detail}</p>
+            ))}
+          </div>
+
           <div className="flex flex-wrap gap-2 mb-4">
             {experience.tech.map((tech, i) => (
               <span
@@ -206,7 +236,6 @@ const ExperienceCard = ({ experience, index }) => {
               </span>
             ))}
           </div>
-          <div className="text-green-400/80 text-sm">{experience.highlight}</div>
         </motion.div>
       </div>
     </motion.div>
@@ -247,10 +276,10 @@ const Home = () => {
   return (
     <div className="bg-black text-white min-h-screen">
       {/* Hero Section */}
-      <div className="max-w-[1400px] mx-auto px-8 py-20">
+      <div className="max-w-[1550px] mx-auto">
         {/* Header row */}
         <motion.div 
-          className="flex justify-between items-center mb-10"
+          className="flex justify-between items-center pt-32 pb-10 px-12"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -266,41 +295,43 @@ const Home = () => {
 
         {/* Main content */}
         <motion.div 
-          className="max-w-5xl"
+          className="px-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <h1 className="text-8xl font-light tracking-tight leading-[1.1] mb-16">
-            <div className="opacity-90 hover:opacity-100 transition-opacity duration-300">
-              I'm passionate about<br />
-              building usable AI with
-            </div>
-            <motion.span
-              className="text-green-400 block mt-2"
-              key={wordIndex}
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: 20, opacity: 0 }}
-              transition={{ duration: 0.5 }}
+          <div className="max-w-5xl">
+            <h1 className="text-8xl font-light tracking-tight leading-[1.1] mb-16">
+              <div className="opacity-90 hover:opacity-100 transition-opacity duration-300">
+                I'm passionate about<br />
+                building usable AI with
+              </div>
+              <motion.span
+                className="text-green-400 block mt-2"
+                key={wordIndex}
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: 20, opacity: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                {rotatingWords[wordIndex]}
+              </motion.span>
+            </h1>
+            <motion.p 
+              className="text-[#888] text-2xl font-light leading-relaxed max-w-3xl hover:text-[#999] transition-colors duration-300"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
             >
-              {rotatingWords[wordIndex]}
-            </motion.span>
-          </h1>
-          <motion.p 
-            className="text-[#888] text-2xl font-light leading-relaxed max-w-3xl hover:text-[#999] transition-colors duration-300"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            As a software engineer with a passion for machine learning and GenAI, I specialize in building modern web apps powered by LLMs. My projects span domains like voice interfaces, natural language systems, and developer tools.
-          </motion.p>
+              As a software engineer with a passion for machine learning and GenAI, I specialize in building modern web apps powered by LLMs. My projects span domains like voice interfaces, natural language systems, and developer tools.
+            </motion.p>
+          </div>
         </motion.div>
       </div>
 
       {/* Skills Section */}
       <motion.section 
-        className="max-w-[1400px] mx-auto px-8 py-32 relative"
+        className="max-w-[1400px] mx-auto px-12 py-32 relative"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -329,7 +360,7 @@ const Home = () => {
 
       {/* Experience Timeline Section */}
       <motion.section 
-        className="max-w-[1400px] mx-auto px-8 py-32 relative"
+        className="max-w-[1400px] mx-auto px-12 py-32 relative"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -367,7 +398,7 @@ const Home = () => {
       {/* Projects section */}
       <motion.section 
         id="projects" 
-        className="max-w-[1400px] mx-auto px-8 py-32"
+        className="max-w-[1400px] mx-auto px-12 py-32"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -433,13 +464,12 @@ const Home = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <motion.a
-              href="/projects"
-              className="group relative px-8 py-4 bg-white/5 backdrop-blur-sm rounded-full border border-white/10 hover:border-white/30 transition-all duration-300"
+            <motion.div
+              className="group relative px-8 py-4 bg-white/5 backdrop-blur-sm rounded-full border border-white/10 hover:border-white/30 transition-all duration-300 cursor-pointer"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
-              <span className="relative z-10 text-xl text-white/70 group-hover:text-white flex items-center gap-3">
+              <Link to="/projects" className="relative z-10 text-xl text-white/70 group-hover:text-white flex items-center gap-3">
                 See All Projects 
                 <motion.span 
                   className="text-2xl"
@@ -448,8 +478,8 @@ const Home = () => {
                 >
                   →
                 </motion.span>
-              </span>
-            </motion.a>
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
       </motion.section>

@@ -15,13 +15,12 @@ const projects = [
     title: 'PDF Q&A (RAG)',
     description: 'Retrieval-Augmented Generation app that answers questions from uploaded PDFs using LLMs.'
   }
-  // Add more projects as needed from your resume
 ];
 
 const About = () => {
   return (
-    <section className="max-w-6xl mx-auto px-4 py-24 text-beige min-h-screen">
-      <div className="flex flex-col lg:flex-row gap-20 items-center lg:items-start">
+    <section className="max-w-[1550px] mx-auto px-4 py-24 text-beige min-h-screen">
+      <div className="flex flex-col lg:flex-row gap-20 items-center lg:items-start mb-24">
         {/* Left: About Heading and Paragraphs */}
         <motion.div 
           className="flex-1 w-full"
@@ -32,41 +31,45 @@ const About = () => {
           <h2 className="text-7xl font-light mb-12 text-left bg-clip-text bg-gradient-to-r from-beige to-gray-400">
             About
           </h2>
-          <div className="space-y-10 text-lg md:text-xl text-gray-300 leading-relaxed">
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="backdrop-blur-sm bg-white/5 p-6 rounded-lg shadow-xl"
-            >
-              As someone deeply fascinated by the brilliance of large language models and the ever-expanding frontier of AI, I find joy (and sometimes existential dread) in building systems that make human–computer interaction feel natural, intuitive, and surprisingly helpful.
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="backdrop-blur-sm bg-white/5 p-6 rounded-lg shadow-xl"
-            >
-              I'm a graduate student who loves turning complex ideas into clean, functional web apps and AI/ML systems. I'm especially passionate about creating tools that leverage the power of large language models (LLMs) — the kind that can write code, explain black holes, or help you draft a polite email to your boss. The now-iconic paper "Attention Is All You Need" didn't just spark an industry shift — it also sparked my current obsession with generative AI.              
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="backdrop-blur-sm bg-white/5 p-6 rounded-lg shadow-xl"
-            >
-              I focus on building applications that combine cutting-edge AI with real-world functionality. Whether it's voice-based assistants, natural language interfaces, or fine-tuned models that actually understand context, I aim to make intelligent systems that are not just powerful, but human-friendly. My development philosophy blends clarity, creativity, and usefulness — I believe technology should not only work, but feel like magic (without the bugs, hopefully).
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
-              className="backdrop-blur-sm bg-white/5 p-6 rounded-lg shadow-xl"
-            >
-              I'm always up for collaborating on innovative AI projects — especially the kind where we can build something cool and actually useful. If you're building in GenAI or dreaming up tools that make people's lives easier, I'd love to hear from you.
-            </motion.p>
-          </div>
+          <motion.div 
+            className="backdrop-blur-sm bg-white/5 p-8 rounded-xl border border-white/10 shadow-xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <div className="space-y-8 text-lg md:text-xl text-gray-300 leading-relaxed">
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+              >
+                As someone deeply fascinated by the brilliance of large language models and the ever-expanding frontier of AI, I find joy (and sometimes existential dread) in building systems that make human–computer interaction feel natural, intuitive, and surprisingly helpful.
+              </motion.p>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+              >
+                I'm a graduate student who loves turning complex ideas into clean, functional web apps and AI/ML systems. I'm especially passionate about creating tools that leverage the power of large language models (LLMs) — the kind that can write code, explain black holes, or help you draft a polite email to your boss. The now-iconic paper "Attention Is All You Need" didn't just spark an industry shift — it also sparked my current obsession with generative AI.              
+              </motion.p>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+              >
+                I focus on building applications that combine cutting-edge AI with real-world functionality. Whether it's voice-based assistants, natural language interfaces, or fine-tuned models that actually understand context, I aim to make intelligent systems that are not just powerful, but human-friendly. My development philosophy blends clarity, creativity, and usefulness — I believe technology should not only work, but feel like magic (without the bugs, hopefully).
+              </motion.p>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+              >
+                I'm always up for collaborating on innovative AI projects — especially the kind where we can build something cool and actually useful. If you're building in GenAI or dreaming up tools that make people's lives easier, I'd love to hear from you.
+              </motion.p>
+            </div>
+          </motion.div>
         </motion.div>
+
         {/* Right: Profile Image and Name */}
         <motion.div 
           className="flex flex-col items-center w-full lg:w-auto lg:ml-24"
@@ -115,6 +118,52 @@ const About = () => {
           </div>
         </motion.div>
       </div>
+
+      {/* Education Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.7 }}
+        className="w-full"
+      >
+        <h2 className="text-5xl font-light mb-12 text-left bg-clip-text bg-gradient-to-r from-beige to-gray-400">
+          Education
+        </h2>
+        <motion.div 
+          className="backdrop-blur-sm bg-white/5 p-8 rounded-xl border border-white/10 shadow-xl"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+        >
+          <div className="space-y-8">
+            <motion.div 
+              className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.9, duration: 0.6 }}
+            >
+              <div>
+                <h3 className="text-2xl font-light text-white">Master of Science in Computer Science</h3>
+                <p className="text-lg text-gray-400">Texas A&M University, Corpus Christi</p>
+              </div>
+              <p className="text-lg text-gray-400">May 2025</p>
+            </motion.div>
+
+            <motion.div 
+              className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.0, duration: 0.6 }}
+            >
+              <div>
+                <h3 className="text-2xl font-light text-white">Bachelor of Technology in Computer Science</h3>
+                <p className="text-lg text-gray-400">Raghu Institute of Technology, India</p>
+              </div>
+              <p className="text-lg text-gray-400">May 2022</p>
+            </motion.div>
+          </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

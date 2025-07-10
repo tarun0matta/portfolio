@@ -4,49 +4,50 @@ import { motion, AnimatePresence } from 'framer-motion';
 const projects = [
   {
     title: "Infinity POS",
-    description: "A smart point-of-sale system with inventory tracking, reporting, and role-based access.",
+    description: "A smart POS system with inventory, employee roles, real-time sales, and analytics — built with clean code and caffeine.",
     tech: ["React", "Flask", "PostgreSQL", "JWT"],
-    link: "https://your-demo-link.com",
+    link: "https://github.com/tarun0matta/infinity-pos",
     category: "Full Stack"
-  },
-  {
-    title: "Wumpus World AI",
-    description: "Genetic algorithm-driven AI agent to navigate a Wumpus World environment.",
-    tech: ["Python", "Genetic Algorithm", "Game AI"],
-    link: "https://github.com/yourusername/wumpus-world-ai",
-    category: "AI/ML"
   },
   {
     title: "PDF Q&A (RAG)",
-    description: "Retrieval-Augmented Generation app that answers questions from uploaded PDFs using LLMs.",
-    tech: ["LangChain", "Python", "OpenAI API"],
-    link: "https://github.com/yourusername/pdf-qa",
+    description: "Retrieval-Augmented Generation system that answers questions based on PDF content. No more Ctrl+F.",
+    tech: ["LangChain", "Python", "LLMs"],
+    link: "https://github.com/tarun0matta/rag-implementation",
     category: "AI/ML"
   },
   {
-    title: "Smart Analytics Dashboard",
-    description: "Real-time analytics platform with predictive insights and interactive visualizations.",
-    tech: ["Next.js", "D3.js", "Python", "Redis"],
-    link: "https://github.com/yourusername/analytics",
+    title: "Drive-Thru Voice Assistant",
+    description: "Voice-based assistant using LLaMA 3 and gTTS to take fast food orders like a chatty McBot.",
+    tech: ["Python", "Ollama", "gTTS", "SpeechRecognition"],
+    link: "https://github.com/tarun0matta/drivethru-chatbot",
+    category: "AI/ML"
+  },
+  {
+    title: "Cooking Chatbot (Fine-tuned LLaMA2)",
+    description: "A culinary LLM trained on RecipeNLG, ready to guide you through recipes and judge your pantry.",
+    tech: ["Python", "LoRA", "LLaMA2", "HuggingFace"],
+    link: "https://github.com/tarun0matta/cookbot-llama2",
+    category: "AI/ML"
+  },
+  {
+    title: "Text-to-SQL Generator",
+    description: "Natural language interface that converts user queries into SQL — no manual joins, no crying.",
+    tech: ["Python", "Streamlit", "LLMs"],
+    link: "https://github.com/tarun0matta/text-2-sql",
+    category: "AI/ML"
+  },
+  {
+    title: "Portfolio Website",
+    description: "A sleek, sarcastic portfolio built with React to showcase all this chaos and clean code.",
+    tech: ["React", "TailwindCSS", "Framer Motion"],
+    link: "https://github.com/tarun0matta/portfolio",
     category: "Full Stack"
-  },
-  {
-    title: "Neural Style Transfer",
-    description: "Web app that applies artistic styles to images using deep learning.",
-    tech: ["PyTorch", "FastAPI", "React", "Docker"],
-    link: "https://github.com/yourusername/style-transfer",
-    category: "AI/ML"
-  },
-  {
-    title: "Cloud Infrastructure Manager",
-    description: "Automated cloud resource management and optimization platform.",
-    tech: ["Terraform", "AWS", "Node.js", "GraphQL"],
-    link: "https://github.com/yourusername/cloud-manager",
-    category: "DevOps"
   }
 ];
 
-const categories = ["All", "AI/ML", "Full Stack", "DevOps"];
+
+const categories = ["All", "AI/ML", "Full Stack"];
 
 const ProjectCard = ({ project }) => (
   <motion.div
@@ -112,7 +113,7 @@ const Projects = () => {
 
   return (
     <div className="min-h-screen bg-black">
-      <div className="max-w-7xl mx-auto px-8 py-24">
+      <div className="max-w-[1550px] mx-auto px-8 py-24">
         {/* Header */}
         <div className="mb-16">
           <motion.h1 

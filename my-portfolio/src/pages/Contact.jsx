@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { FaLinkedin, FaGithub, FaMedium, FaTwitter, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 
 const socialLinks = [
   {
@@ -15,7 +16,6 @@ const socialLinks = [
     icon: <FaGithub />,
     color: 'hover:text-white'
   },
-
   {
     name: 'Twitter',
     url: 'https://twitter.com/yourusername',
@@ -66,7 +66,7 @@ const SocialLink = ({ name, url, icon, color, index }) => (
   </motion.a>
 );
 
-const InputField = ({ label, type, placeholder, value, onChange, error, delay }) => (
+const InputField = ({ label, type, placeholder, value, onChange, error, delay, name }) => (
   <motion.div
     className="relative"
     initial={{ opacity: 0, y: 20 }}
@@ -76,6 +76,7 @@ const InputField = ({ label, type, placeholder, value, onChange, error, delay })
     <label className="block text-sm text-[#8b8b8b] mb-2">{label}</label>
     {type === 'textarea' ? (
       <textarea
+        name={name}
         className={`w-full bg-white/5 border ${error ? 'border-red-500/50' : 'border-white/10'} rounded-lg p-3 text-white focus:outline-none focus:border-green-500/50 transition-colors duration-300 resize-none h-32`}
         placeholder={placeholder}
         value={value}
@@ -84,6 +85,7 @@ const InputField = ({ label, type, placeholder, value, onChange, error, delay })
     ) : (
       <input
         type={type}
+        name={name}
         className={`w-full bg-white/5 border ${error ? 'border-red-500/50' : 'border-white/10'} rounded-lg p-3 text-white focus:outline-none focus:border-green-500/50 transition-colors duration-300`}
         placeholder={placeholder}
         value={value}
@@ -103,6 +105,7 @@ const InputField = ({ label, type, placeholder, value, onChange, error, delay })
 );
 
 const Contact = () => {
+  const form = useRef();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -133,12 +136,23 @@ const Contact = () => {
       setIsSubmitting(true);
       setSubmitStatus('submitting');
       
-      // Simulate API call
       try {
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        // Replace these with your actual EmailJS service details
+        const result = await emailjs.sendForm(
+          'YOUR_SERVICE_ID', // Add your EmailJS service ID
+          'YOUR_TEMPLATE_ID', // Add your EmailJS template ID
+          form.current,
+          'YOUR_PUBLIC_KEY' // Add your EmailJS public key
+        );
+
+        if (result.text === 'OK') {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', subject: '', message: '' });
+        } else {
+          throw new Error('Failed to send message');
+        }
       } catch (error) {
+        console.error('Error sending email:', error);
         setSubmitStatus('error');
       } finally {
         setIsSubmitting(false);
@@ -148,7 +162,7 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-black">
-      <div className="max-w-7xl mx-auto px-8 py-24">
+      <div className="max-w-[1550px] mx-auto px-8 py-24">
         {/* Header */}
         <div className="mb-20">
           <motion.p
@@ -186,10 +200,11 @@ const Contact = () => {
             className="bg-gradient-to-br from-[#0f1922] to-[#0a1118] p-8 rounded-xl border border-white/5"
           >
             <h2 className="text-2xl font-light text-white mb-8">Send a Message</h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form ref={form} onSubmit={handleSubmit} className="space-y-6">
               <InputField
                 label="Name"
                 type="text"
+                name="user_name"
                 placeholder="Your name"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -199,6 +214,7 @@ const Contact = () => {
               <InputField
                 label="Email"
                 type="email"
+                name="user_email"
                 placeholder="your@email.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -208,6 +224,7 @@ const Contact = () => {
               <InputField
                 label="Subject"
                 type="text"
+                name="subject"
                 placeholder="What's this about?"
                 value={formData.subject}
                 onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
@@ -217,6 +234,7 @@ const Contact = () => {
               <InputField
                 label="Message"
                 type="textarea"
+                name="message"
                 placeholder="Your message..."
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
