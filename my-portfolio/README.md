@@ -1,6 +1,6 @@
 # Tarun Matta - Portfolio
 
-A modern, responsive portfolio website built with React, showcasing my expertise in AI/ML and web development. The site features a clean, minimalist design with smooth animations, interactive components, and a focus on user experience.
+A modern, responsive portfolio website built with React, showcasing my expertise in AI/ML and web development. The site features a clean, minimalist design with smooth animations, interactive components, and a focus on user experience.åå
 
 ## Overview
 
