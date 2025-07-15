@@ -52,34 +52,34 @@ const skills = [
   {
     category: "GenAI & LLMs",
     items: [
-      { name: "LLaMA3 & Ollama", level: 95 },
-      { name: "Transformer Architectures", level: 90 },
-      { name: "Prompt Engineering", level: 92 },
-      { name: "RAG Systems", level: 94 },
-      { name: "Diffusion & GANs", level: 88 },
-      { name: "LangChain", level: 92 }
+      { name: "LLaMA3 & Ollama", level: 9.5 },
+      { name: "Transformer Architectures", level: 9.0 },
+      { name: "Prompt Engineering", level: 9.2 },
+      { name: "RAG Systems", level: 9.4 },
+      { name: "Diffusion & GANs", level: 8.8 },
+      { name: "LangChain", level: 9.2 }
     ]
   },
   {
     category: "ML Frameworks & Programming",
     items: [
-      { name: "Python", level: 95 },
-      { name: "TensorFlow", level: 90 },
-      { name: "PyTorch", level: 88 },
-      { name: "Hugging Face", level: 92 },
-      { name: "scikit-learn", level: 90 },
-      { name: "SQL", level: 88 }
+      { name: "Python", level: 9.5 },
+      { name: "TensorFlow", level: 9.0 },
+      { name: "PyTorch", level: 8.8 },
+      { name: "Hugging Face", level: 9.2 },
+      { name: "scikit-learn", level: 9.0 },
+      { name: "SQL", level: 8.8 }
     ]
   },
   {
     category: "Cloud & Infrastructure",
     items: [
-      { name: "AWS Services", level: 88 },
-      { name: "Docker & Kubernetes", level: 85 },
-      { name: "Git & Version Control", level: 92 },
-      { name: "FastAPI & APIs", level: 90 },
-      { name: "PostgreSQL & Databases", level: 88 },
-      { name: "Pandas & NumPy", level: 92 }
+      { name: "AWS Services", level: 8.8 },
+      { name: "Docker & Kubernetes", level: 8.5 },
+      { name: "Git & Version Control", level: 9.2 },
+      { name: "FastAPI & APIs", level: 9.0 },
+      { name: "PostgreSQL & Databases", level: 8.8 },
+      { name: "Pandas & NumPy", level: 9.2 }
     ]
   }
 ];
@@ -113,13 +113,13 @@ const SkillBar = ({ name, level, index }) => {
     >
       <div className="flex justify-between items-center mb-2">
         <span className="text-white/80 text-lg">{name}</span>
-        <span className="text-white/60 text-sm">{level}%</span>
+        <span className="text-white/60 text-sm">{level}/10</span>
       </div>
       <div className="h-2 bg-white/10 rounded-full overflow-hidden">
         <motion.div
           className="h-full bg-gradient-to-r from-green-400 to-blue-500"
           initial={{ width: 0 }}
-          whileInView={{ width: `${level}%` }}
+          whileInView={{ width: `${(level/10) * 100}%` }}
           transition={{ duration: 1, ease: "easeOut" }}
         />
       </div>
